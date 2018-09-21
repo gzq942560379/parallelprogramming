@@ -101,7 +101,7 @@ void print_vector(double* local_a, int local_n, int n, int rank,
 
 void allocate_vectors(double** local_a_p, double** local_b_p,
                       double** local_c_p, int local_n, MPI_Comm comm) {
-  int local_ok = 0;
+  int local_ok = 1;
   char* fname = "allocate_vectors";
   *local_a_p = malloc(local_n * sizeof(double));
   *local_b_p = malloc(local_n * sizeof(double));
