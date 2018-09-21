@@ -1,0 +1,16 @@
+{
+    "cmake.configureOnOpen": true,
+    "files.exclude": {
+        "cmake-build-debug": true,
+        ".idea": true
+    },
+    "files.associations": {
+        "*.h": "c",
+        "type_traits": "c",
+        "array": "c",
+        "initializer_list": "c",
+        "string_view": "c",
+        "utility": "c",
+        "vector": "c"
+    }
+}
