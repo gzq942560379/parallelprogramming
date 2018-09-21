@@ -1,13 +1,19 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
+    // for the documentation about the tasks.json format /home/gzq/CLionProjects/parallelprogramming/build/mpi/util/check_error
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "vector_add",
             "type": "shell",
             "command": "mpirun -n 2 build/mpi/vectir_add/vector_add",
             "problemMatcher": []
+        },
+        {
+            "label": "echo",
+            "type": "shell",
+            "command": "build/mpi/util/check_error",
+            "problemMatcher": []
         }
-    ]
+    ],
 }
