@@ -15,7 +15,7 @@ add_executable(parallelprogramming main.cpp)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 add_subdirectory(collections)
-add_subdirectory(data_partition)
+add_subdirectory(template)
 add_subdirectory(util)
 
 add_subdirectory(pthread)
