@@ -1,6 +1,6 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format /home/gzq/CLionProjects/parallelprogramming/build/mpi/util/check_error
+    // for the documentation about the tasks.json format 
     "version": "2.0.0",
     "tasks": [
         {
@@ -13,6 +13,24 @@
             "label": "floyd",
             "type": "shell",
             "command": "build/mpi/floyd/floyd",
+            "problemMatcher": []
+        },
+        {
+            "label": "block_data_partition",
+            "type": "shell",
+            "command": "build/template/data_partition/block_data_partition",
+            "problemMatcher": []
+        },
+        {
+            "label": "mpi_floyd",
+            "type": "shell",
+            "command": "mpirun -n 4 build/mpi/floyd/mpi_floyd",
+            "problemMatcher": []
+        },
+        {
+            "label": "sequential_execution",
+            "type": "shell",
+            "command": "mpirun -n 4 build/template/sequential_execution/sequential_execution",
             "problemMatcher": []
         }
     ]

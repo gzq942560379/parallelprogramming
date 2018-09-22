@@ -1,4 +1,7 @@
 #include "matrix.h"
+#include <memory.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void matrix_init(matrix_t *metrix_p /* out */, int row, int col) {
   metrix_p->row = row;
