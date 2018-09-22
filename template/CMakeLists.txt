@@ -1,2 +1,3 @@
 add_subdirectory(data_partition)
 add_subdirectory(sequential_execution)
+add_subdirectory(get_time)

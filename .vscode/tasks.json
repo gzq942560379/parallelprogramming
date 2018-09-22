@@ -32,6 +32,18 @@
             "type": "shell",
             "command": "mpirun -n 4 build/template/sequential_execution/sequential_execution",
             "problemMatcher": []
+        },
+        {
+            "label": "mpi_time",
+            "type": "shell",
+            "command": "mpirun -n 4 build/template/get_time/mpi_time",
+            "problemMatcher": []
+        },
+        {
+            "label": "single_time",
+            "type": "shell",
+            "command": "build/template/get_time/single_time",
+            "problemMatcher": []
         }
     ]
 }

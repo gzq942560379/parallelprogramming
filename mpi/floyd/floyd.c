@@ -4,15 +4,16 @@
 
 #include "../../collections/matrix/matrix.h"
 #include "../../util/random_utils/random_uitls.h"
+#include "../../util/time_utils/time_utils.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b))
 #define MAX 100000000
-#define PATH
+// #define PATH
 #define RANDOM
 
 int main(int argc, char **argv) {
   matrix_t matrix;
-  int n = 5;
+  int n = 1000;
   matrix_init(&matrix, n, n);
 
 #ifndef RANDOM
@@ -32,7 +33,7 @@ int main(int argc, char **argv) {
     matrix.metrix[i][i] = 0;
   }
 
-  matrix_print(&matrix);
+  // matrix_print(&matrix);、
 
 #ifdef PATH
   matrix_t path_matrix;
@@ -40,6 +41,7 @@ int main(int argc, char **argv) {
   matrix_fill(&path_matrix, -1);
 #endif
 
+  click_s();
   for (int k = 0; k < n; k++) {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -55,9 +57,11 @@ int main(int argc, char **argv) {
       }
     }
   }
+  click_e();
+  print_milli_interval();
 
-  printf("\n");
-  matrix_print(&matrix);
+  // printf("\n");
+  // matrix_print(&matrix);
 #ifdef PATH
   printf("\n");
   matrix_print(&path_matrix);

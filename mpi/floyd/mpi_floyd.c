@@ -6,6 +6,8 @@
 #include "../../collections/matrix/matrix.h"
 #include "../../util/random_utils/random_uitls.h"
 
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+
 #define CROSS_BLOCK_LOW(id, p, n) ((id) * (n) / (p))
 #define CROSS_BLOCK_HIGH(id, p, n) (CROSS_BLOCK_LOW((id) + 1, p, n) - 1)
 #define CROSS_BLOCK_SIZE(id, p, n) \
@@ -15,21 +17,28 @@
 #define MATRIX_SET(matrix, n, row, col, val) \
   (matrix[(row) * (n) + (col)] = (val))
 #define MATRIX_GET(matrix, n, row, col) matrix[(row) * (n) + (col)]
+
 #define MAX 100000000
+// #define DEBUG
 
 void print_matrix(int* matrix, int row, int col);
 void sequential_print_local_matrix(int* local_matrix, int local_n, int n,
                                    int rank, int thread_count, MPI_Comm comm);
 void get_matrix(int* local_matrix, int local_n, int n, int rank,
                 int thread_count, MPI_Comm comm);
+void parallel_floyd(int* local_matrix, int* k_row, int rank, int thread_count,
+                    int local_n, int n, int local_low, MPI_Comm comm);
+void print_result(int* local_matrix, int rank, int n, int thread_count,
+                  int local_n, MPI_Comm comm);
 
 int main(int argc, char** argv) {
-  int n = 14;
+  int n = 1000;
   int rank;
   int thread_count;
   MPI_Comm comm = MPI_COMM_WORLD;
   int* local_matrix;
   int* k_row;
+  double time, local_time;
 
   MPI_Init(&argc, &argv);
   MPI_Comm_rank(comm, &rank);
@@ -41,20 +50,24 @@ int main(int argc, char** argv) {
 
   local_matrix = malloc(local_n * n * sizeof(int));
   k_row = malloc(n * sizeof(int));
-#ifdef DEBUG
-  printf("rank %d ,local_n = %d,local_low = %d,local_high = %d\n", rank,
-         local_n, local_low, local_high);
-#endif
 
   get_matrix(local_matrix, local_n, n, rank, thread_count, comm);
-#ifdef DEBUG
-  sequential_print_local_matrix(local_matrix, local_n, n, rank, thread_count,
-                                comm);
-#endif
-  for (int k = 0; k < n; k++) {
-    //广播 第k行
-    int k_owner = CROSS_BLOCK_OWNER(k, thread_count, n);
+
+  MPI_Barrier(comm);
+  local_time = MPI_Wtime();
+
+  parallel_floyd(local_matrix, k_row, rank, thread_count, local_n, n, local_low,
+                 comm);
+
+  local_time = MPI_Wtime() - local_time;
+  MPI_Reduce(&local_time, &time, 1, MPI_DOUBLE, MPI_MAX, 0, comm);
+  if (rank == 0) {
+    printf("elapsed time = %e second \n", time);
+    fflush(stdout);
   }
+
+  // print_result(local_matrix, rank, n, thread_count, local_n, comm);
+
   free(k_row);
   free(local_matrix);
   MPI_Finalize();
@@ -119,5 +132,54 @@ void get_matrix(int* local_matrix, int local_n, int n, int rank,
   } else {
     MPI_Scatterv(NULL, NULL, NULL, MPI_INT, local_matrix, local_n * n, MPI_INT,
                  0, comm);
+  }
+}
+
+void parallel_floyd(int* local_matrix, int* k_row, int rank, int thread_count,
+                    int local_n, int n, int local_low, MPI_Comm comm) {
+  for (int k = 0; k < n; k++) {
+    //广播 第k行
+    int k_owner = CROSS_BLOCK_OWNER(k, thread_count, n);
+    if (rank == k_owner) {
+      int local_k = k - local_low;
+      memcpy(k_row, local_matrix + local_k * n, n * sizeof(int));
+      MPI_Bcast(k_row, n, MPI_INT, k_owner, comm);
+    } else {
+      MPI_Bcast(k_row, n, MPI_INT, k_owner, comm);
+    }
+    for (int i = 0; i < local_n; i++) {
+      for (int j = 0; j < n; j++) {
+        local_matrix[i * n + j] =
+            min(local_matrix[i * n + j], local_matrix[i * n + k] + k_row[j]);
+      }
+    }
+  }
+}
+
+void print_result(int* local_matrix, int rank, int n, int thread_count,
+                  int local_n, MPI_Comm comm) {
+  if (rank == 0) {
+    int* matrix = malloc(n * n * sizeof(int));
+    int* send_counts = malloc(thread_count * sizeof(int));
+    int* send_disps = malloc(thread_count * sizeof(int));
+    send_counts[0] = local_n * n;
+    send_disps[0] = 0;
+    for (int i = 1; i < thread_count; i++) {
+      send_counts[i] = CROSS_BLOCK_SIZE(i, thread_count, n) * n;
+      send_disps[i] = send_disps[i - 1] + send_counts[i - 1];
+    }
+    MPI_Gatherv(local_matrix, local_n * n, MPI_INT, matrix, send_counts,
+                send_disps, MPI_INT, 0, comm);
+
+    printf("print result : \n");
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        printf("%d ", matrix[i * n + j]);
+      }
+      printf("\n");
+    }
+  } else {
+    MPI_Gatherv(local_matrix, local_n * n, MPI_INT, NULL, NULL, NULL, MPI_INT,
+                0, comm);
   }
 }

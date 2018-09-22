@@ -3,6 +3,7 @@ add_executable(floyd floyd.c)
 add_executable(mpi_floyd mpi_floyd.c)
 
 target_link_libraries(floyd random_uitls)
+target_link_libraries(floyd time_utils)
 target_link_libraries(floyd matrix)
 
 target_link_libraries(mpi_floyd random_uitls)

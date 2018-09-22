@@ -4,3 +4,8 @@ cmake-build-debug
 
 #vs code
 build
+
+#gtags
+GPATH
+GRTAGS
+GTAGS
