@@ -13,6 +13,8 @@
         "utility": "c",
         "vector": "c",
         "system_error": "c",
-        "check_error": "c"
+        "check_error": "c",
+        "unordered_map": "c",
+        "limits": "c"
     }
 }

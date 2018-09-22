@@ -1,4 +1,3 @@
 
-
-
-add_library(list list.c list.h)
+add_subdirectory(list)
+add_subdirectory(matrix)

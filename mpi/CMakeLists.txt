@@ -1,3 +1,4 @@
 add_subdirectory(hello_word)
 add_subdirectory(vectir_add)
+add_subdirectory(floyd)
 add_subdirectory(util)

@@ -5,18 +5,17 @@
 #ifndef PTHREAD_DEMO_LIST_H
 #define PTHREAD_DEMO_LIST_H
 
-
 #include <stddef.h>
 
 struct Node {
-    void *val;
-    struct Node *next;
+  void *val;
+  struct Node *next;
 } node;
 
 struct List {
-    struct Node *head;
-    struct Node *tail;
-    size_t size;
+  struct Node *head;
+  struct Node *tail;
+  size_t size;
 } list;
 
 int list_size(struct List *list);
@@ -35,5 +34,4 @@ void list_destory(struct List *list);
 
 void list_print(struct List *list);
 
-
-#endif //PTHREAD_DEMO_LIST_H
+#endif  // PTHREAD_DEMO_LIST_H

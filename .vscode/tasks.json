@@ -10,10 +10,10 @@
             "problemMatcher": []
         },
         {
-            "label": "echo",
+            "label": "floyd",
             "type": "shell",
-            "command": "build/mpi/util/check_error",
+            "command": "build/mpi/floyd/floyd",
             "problemMatcher": []
         }
-    ],
+    ]
 }

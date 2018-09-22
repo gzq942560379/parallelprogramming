@@ -4,9 +4,9 @@
 
 #ifndef PTHREAD_DEMO_ESTIMATE_PI_H
 
-#include "stdlib.h"
-#include "stdio.h"
 #include <pthread.h>
+#include "stdio.h"
+#include "stdlib.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b))
 
@@ -18,7 +18,6 @@ int thread_count = 1;
 long long total_hit_number = 0;
 pthread_mutex_t *mutex;
 
-
 #define PTHREAD_DEMO_ESTIMATE_PI_H
 
-#endif //PTHREAD_DEMO_ESTIMATE_PI_H
+#endif  // PTHREAD_DEMO_ESTIMATE_PI_H
