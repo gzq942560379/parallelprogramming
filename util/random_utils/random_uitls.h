@@ -8,8 +8,12 @@
 //左闭右开
 int randint(int start, int end);
 
-//返回[0,1)之间的小数
-double random_double();
+//返回[start,end)之间的小数
+double random_double(double start, double end);
+
+//左闭右开
+void random_double_array(double* arr /* out */, int len, double start,
+                         double end);
 
 //左闭右开
 void random_array(int* arr /* out */, int len, int start, int end);

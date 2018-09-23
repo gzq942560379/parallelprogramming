@@ -12,7 +12,16 @@ int randint(int start, int end) {
   return rand() % (end - start) + start;
 }
 
-double random_double() { return (double)rand() / ((long)(RAND_MAX) + 1); }
+double random_double(double start, double end) {
+  return ((double)rand() / ((long)(RAND_MAX) + 1)) * (end - start) + start;
+}
+
+void random_double_array(double* arr /* out */, int len, double start,
+                         double end) {
+  for (int i = 0; i < len; i++) {
+    arr[i] = random_double(start, end);
+  }
+}
 
 void random_array(int* arr /* out */, int len, int start, int end) {
   for (int i = 0; i < len; i++) {

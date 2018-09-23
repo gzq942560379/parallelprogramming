@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../../collections/matrix/matrix.h"
 #include "../../util/random_utils/random_uitls.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b))

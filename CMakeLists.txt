@@ -3,7 +3,7 @@ project(parallelprogramming)
 
 set(CMAKE_CXX_STANDARD 11)
 
-SET(CMAKE_C_COMPILER mpicc)
+SET(CMAKE_C_COMPILER gcc)
 SET(CMAKE_CXX_COMPILER g++)
 
 SET(CMAKE_BUILD_TYPE "Debug")
