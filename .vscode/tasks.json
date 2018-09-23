@@ -4,6 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "col_matrix_vector_multipy",
+            "type": "shell",
+            "command": "mpirun -n 4 build/mpi/matrix_vector_multipy/col_matrix_vector_multipy",
+            "problemMatcher": []
+        },
+        {
             "label": "row_matrix_vector_multipy",
             "type": "shell",
             "command": "mpirun -n 4 build/mpi/matrix_vector_multipy/row_matrix_vector_multipy",
