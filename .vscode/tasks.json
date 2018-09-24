@@ -1,8 +1,14 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format  
+    // for the documentation about the tasks.json format   
     "version": "2.0.0",
     "tasks": [
+        {
+            "label": "block_matrix_vector_multipy",
+            "type": "shell",
+            "command": "mpirun -n 4 build/mpi/matrix_vector_multipy/block_matrix_vector_multipy",
+            "problemMatcher": []
+        },
         {
             "label": "col_matrix_vector_multipy",
             "type": "shell",

@@ -81,8 +81,7 @@ void get_size(int *size, int rank, MPI_Comm comm) {
 void read_a(double *local_a, int *size, int rank, int thread_count, int local_n,
             MPI_Comm comm) {
   if (rank == 0) {
-    double *a = malloc(ROW * COL * sizeof(double));
-    random_double_array(a, ROW * COL, START, END);
+    double *a = malloc(COL * sizeof(double));
 
     int *send_counts = malloc(thread_count * sizeof(int));
     int *displs = malloc(thread_count * sizeof(int));
@@ -93,8 +92,10 @@ void read_a(double *local_a, int *size, int rank, int thread_count, int local_n,
       displs[i] = displs[i - 1] + send_counts[i - 1];
     }
     for (int i = 0; i < ROW; i++) {
-      MPI_Scatterv(a + i * COL, send_counts, displs, MPI_DOUBLE,
-                   local_a + i * local_n, local_n, MPI_DOUBLE, 0, comm);
+      // read a row
+      random_double_array(a, COL, START, END);
+      MPI_Scatterv(a, send_counts, displs, MPI_DOUBLE, local_a + i * local_n,
+                   local_n, MPI_DOUBLE, 0, comm);
     }
     free(a);
     free(send_counts);

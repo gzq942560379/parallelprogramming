@@ -1,0 +1,19 @@
+add_executable(row_matrix_vector_multiply row_matrix_vector_multiply.c)
+add_executable(col_matrix_vector_multiply col_matrix_vector_multiply.c)
+add_executable(block_matrix_vector_multiply block_matrix_vector_multiply.c)
+
+target_link_libraries(row_matrix_vector_multiply random_uitls)
+target_link_libraries(row_matrix_vector_multiply console_utils)
+
+target_link_libraries(col_matrix_vector_multiply random_uitls)
+target_link_libraries(col_matrix_vector_multiply console_utils)
+
+target_link_libraries(block_matrix_vector_multiply random_uitls)
+target_link_libraries(block_matrix_vector_multiply console_utils)
+
+find_package(MPI REQUIRED)
+include_directories(${MPI_INCLUDE_PATH})
+
+target_link_libraries(row_matrix_vector_multiply ${MPI_LIBRARIES})
+target_link_libraries(col_matrix_vector_multiply ${MPI_LIBRARIES})
+target_link_libraries(block_matrix_vector_multiply ${MPI_LIBRARIES})

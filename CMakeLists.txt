@@ -1,28 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 project(parallelprogramming)
 
-set(CMAKE_CXX_STANDARD 11)
-
-SET(CMAKE_C_COMPILER gcc)
-SET(CMAKE_CXX_COMPILER g++)
-
-SET(CMAKE_BUILD_TYPE "Debug")
-SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
-SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
-
-add_executable(parallelprogramming main.cpp)
-
-set(THREADS_PREFER_PTHREAD_FLAG ON)
+set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(collections)
+add_subdirectory(mpi)
+add_subdirectory(openmp)
+add_subdirectory(pthread)
 add_subdirectory(template)
 add_subdirectory(util)
 
-add_subdirectory(pthread)
-add_subdirectory(openmp)
-add_subdirectory(mpi)
-
-enable_testing()
-
-
-
+add_executable(parallelprogramming main.cpp)
