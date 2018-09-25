@@ -3,10 +3,20 @@
 //
 
 #include <stdbool.h>
+#include <sys/time.h>
+
 
 #ifndef PTHREAD_DEMO_TIME_UTILS_H
 #define PTHREAD_DEMO_TIME_UTILS_H
 
+
+/* The argument now should be a double (not a pointer to a double) */
+#define GET_TIME(now)                           \
+    {                                           \
+        struct timeval t;                       \
+        gettimeofday(&t, NULL);                 \
+        now = t.tv_sec + t.tv_usec / 1000000.0; \
+    }
 
 struct timeval t1;
 struct timeval t2;

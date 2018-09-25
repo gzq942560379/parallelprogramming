@@ -2,4 +2,7 @@ add_subdirectory(hello_word)
 add_subdirectory(vector_add)
 add_subdirectory(floyd)
 add_subdirectory(matrix_vector_multiply)
+add_subdirectory(matrix_vector_multiply2)
+
+add_subdirectory(tsp)
 add_subdirectory(util)
