@@ -1,6 +1,6 @@
 add_executable(hello_world hello_world.c)
 
-find_package(MPI REQUIRED)
+
 include_directories(${MPI_INCLUDE_PATH})
 target_link_libraries(hello_world ${MPI_LIBRARIES})
 

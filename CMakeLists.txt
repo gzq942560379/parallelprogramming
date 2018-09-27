@@ -1,7 +1,12 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 project(parallelprogramming)
 
 set(CMAKE_CXX_STANDARD 14)
+
+SET(ENV{CC} /usr/bin/mpicc)
+SET(ENV{CXX} /usr/bin/g++)
+SET(CMAKE_C_COMPILER mpicc)
+SET(CMAKE_CXX_COMPILER g++)
 
 add_subdirectory(collections)
 add_subdirectory(mpi)
