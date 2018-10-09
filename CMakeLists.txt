@@ -22,6 +22,11 @@ SET(CMAKE_C_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall" CACHE INTERNAL global)
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb" CACHE INTERNAL global)
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall" CACHE INTERNAL global)
 
+SET(ENV{CC} /usr/bin/mpicc)
+SET(ENV{CXX} /usr/bin/g++)
+SET(CMAKE_C_COMPILER mpicc)
+SET(CMAKE_CXX_COMPILER g++)
+
 add_subdirectory(collections)
 add_subdirectory(mpi)
 add_subdirectory(openmp)
