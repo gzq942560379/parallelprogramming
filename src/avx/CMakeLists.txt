@@ -1,0 +1,4 @@
+SET(CMAKE_C_FLAGS_DEBUG "$ENV{CMAKE_C_FLAGS_DEBUG} -mavx")
+SET(CMAKE_C_FLAGS_RELEASE "$ENV{CXXFLAGS} -mavx")
+
+add_subdirectory(pi)

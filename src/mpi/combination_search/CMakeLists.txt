@@ -1,0 +1,5 @@
+
+add_executable(mpi_backtrack_permutation mpi_backtrack_permutation.c)
+
+target_link_libraries(mpi_backtrack_permutation utils)
+target_link_libraries(mpi_backtrack_permutation ${MPI_LIBRARIES})

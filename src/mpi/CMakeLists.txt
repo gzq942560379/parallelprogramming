@@ -1,0 +1,10 @@
+find_package(MPI REQUIRED)
+include_directories(${MPI_INCLUDE_PATH})
+include_directories(${PROJECT_SOURCE_DIR}/src/header/mpi_utils)
+
+add_subdirectory(hello_word)
+add_subdirectory(vector_add)
+add_subdirectory(floyd)
+add_subdirectory(combination_search)
+add_subdirectory(matrix_vector_multiply)
+add_subdirectory(util)

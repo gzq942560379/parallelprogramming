@@ -1,0 +1,1 @@
+add_executable(openmp_test openmp_test.c)
