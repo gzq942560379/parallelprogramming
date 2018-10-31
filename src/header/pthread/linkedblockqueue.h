@@ -9,7 +9,7 @@
 #include "list.h"
 
 typedef struct LinkedBlockQueue {
-  struct List list;
+  list_t list;
   sem_t full;  //队列中有多少资源可用
   pthread_mutex_t mutex;
 } LinkedBlockQueue;

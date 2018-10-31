@@ -7,31 +7,31 @@
 
 #include <stddef.h>
 
-struct Node {
-  void *val;
-  struct Node *next;
-} node;
+typedef struct {
+    void *val;
+    struct Node *next;
+} node_t;
 
-struct List {
-  struct Node *head;
-  struct Node *tail;
-  size_t size;
-} list;
+typedef struct {
+    node_t *head;
+    node_t *tail;
+    size_t size;
+} list_t;
 
-int list_size(struct List *list);
+int list_size(list_t *list);
 
-void list_init(struct List *list);
+void list_init(list_t *list);
 
-void list_push(struct List *list, void *val);
+void list_push(list_t *list, void *val);
 
-void *list_top(struct List *list);
+void *list_top(list_t *list);
 
-void *list_pop(struct List *list);
+void *list_pop(list_t *list);
 
-void list_append(struct List *list, void *val);
+void list_append(list_t *list, void *val);
 
-void list_destory(struct List *list);
+void list_destroy(list_t *list);
 
-void list_print(struct List *list);
+void list_print(list_t *list);
 
 #endif  // PTHREAD_DEMO_LIST_H

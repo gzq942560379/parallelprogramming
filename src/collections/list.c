@@ -8,7 +8,7 @@
 
 
 int test() {
-    struct List list;
+    list_t list;
     list_init(&list);
     int add_last[] = {1, 2, 3};
     for (int i = 0; i < 3; i++) {
@@ -22,22 +22,22 @@ int test() {
     printf("%d %d \n", *(int *) list_pop(&list), list_size(&list));
     printf("%d \n", list_size(&list));
     list_print(&list);
-    list_destory(&list);
+    list_destroy(&list);
 }
 
 
-int list_size(struct List *list) {
+int list_size(list_t *list) {
     return list->size;
 }
 
-void list_init(struct List *list) {
+void list_init(list_t *list) {
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
 }
 
-void list_push(struct List *list, void *val) {
-    struct Node *node = malloc(sizeof(struct Node));
+void list_push(list_t *list, void *val) {
+    node_t *node = malloc(sizeof(node_t));
     node->val = val;
     list->size++;
     if (list->head == NULL) {
@@ -50,14 +50,14 @@ void list_push(struct List *list, void *val) {
     list->head = node;
 }
 
-void *list_top(struct List *list) {
+void *list_top(list_t *list) {
     if (list->head == NULL) {
         return NULL;
     }
     return list->head->val;
 }
 
-void *list_pop(struct List *list) {
+void *list_pop(list_t *list) {
     if (list->head == NULL) {
         return NULL;
     }
@@ -67,8 +67,8 @@ void *list_pop(struct List *list) {
     return rtn;
 }
 
-void list_append(struct List *list, void *val) {
-    struct Node *node = malloc(sizeof(struct Node));
+void list_append(list_t *list, void *val) {
+    node_t *node = malloc(sizeof(node_t));
     node->val = val;
     list->size++;
     if (list->head == NULL) {
@@ -81,8 +81,8 @@ void list_append(struct List *list, void *val) {
     list->tail = node;
 }
 
-void list_destory(struct List *list) {
-    struct Node *next;
+void list_destroy(list_t *list) {
+    node_t *next;
     while (list->head != NULL) {
         next = list->head->next;
         free(list->head);
@@ -90,8 +90,8 @@ void list_destory(struct List *list) {
     }
 }
 
-void list_print(struct List *list) {
-    struct Node *cur = list->head;
+void list_print(list_t *list) {
+    node_t *cur = list->head;
     while (cur != NULL) {
         printf("%d ", *(int *) cur->val);
         cur = cur->next;

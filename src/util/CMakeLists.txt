@@ -1,5 +1,4 @@
 
-aux_source_directory(. UTILS)
+aux_source_directory(. UTILDIR)
 
-add_library(utils ${UTILS})
-
+add_library(utils ${UTILDIR})

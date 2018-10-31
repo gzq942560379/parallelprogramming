@@ -18,6 +18,7 @@
         now = t.tv_sec + t.tv_usec / 1000000.0; \
     }
 
+
 struct timeval t1;
 struct timeval t2;
 

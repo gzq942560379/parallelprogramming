@@ -71,7 +71,7 @@ int list_block_queue_init(LinkedBlockQueue *queue) {
 }
 
 int list_block_queue_destory(LinkedBlockQueue *queue) {
-    list_destory(&queue->list);
+    list_destroy(&queue->list);
     pthread_mutex_destroy(&queue->mutex);
     sem_destroy(&queue->full);
     return 0;

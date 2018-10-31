@@ -5,8 +5,17 @@
 #ifndef PTHREAD_DEMO_RANDOM_UITLS_H
 #define PTHREAD_DEMO_RANDOM_UITLS_H
 
+void seed();
+
 //左闭右开
 int randint(int start, int end);
+
+//返回[start,end)之间的小数
+float random_float(float start, float end);
+
+//左闭右开
+void random_float_array(float * arr /* out */, int len, float start,
+                         float end);
 
 //返回[start,end)之间的小数
 double random_double(double start, double end);
