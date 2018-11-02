@@ -11,7 +11,8 @@
 
 void main(int argc, char **argv) {
 
-    click_s();
+    timer timer;
+    start(&timer);
     size_t dt = 100000000;
     double pi = 0.0;
     double delta = 1.0 / dt;
@@ -34,7 +35,8 @@ void main(int argc, char **argv) {
     _mm256_store_pd(tmp,pi_4);
     pi += tmp[0]+tmp[1]+tmp[2]+tmp[3];
     pi *= 4.0;
-    click_e();
-    print_milli_interval();
+    end(&timer);
+    print_milli_interval(&timer);
+
     printf("pi = %.50lf\n", pi);
 }

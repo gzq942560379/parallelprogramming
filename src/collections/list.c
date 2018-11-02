@@ -70,6 +70,7 @@ void *list_pop(list_t *list) {
 void list_append(list_t *list, void *val) {
     node_t *node = malloc(sizeof(node_t));
     node->val = val;
+    node->next = NULL;
     list->size++;
     if (list->head == NULL) {
         list->head = node;

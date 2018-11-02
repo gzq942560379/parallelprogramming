@@ -22,6 +22,8 @@ int list_size(list_t *list);
 
 void list_init(list_t *list);
 
+void list_destroy(list_t *list);
+
 void list_push(list_t *list, void *val);
 
 void *list_top(list_t *list);
@@ -30,8 +32,8 @@ void *list_pop(list_t *list);
 
 void list_append(list_t *list, void *val);
 
-void list_destroy(list_t *list);
-
 void list_print(list_t *list);
+
+
 
 #endif  // PTHREAD_DEMO_LIST_H

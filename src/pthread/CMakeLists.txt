@@ -22,6 +22,6 @@ add_library(barrier barrier.c)
 target_link_libraries(barrier_test utils)
 
 
-add_executable(producer_comsumer producer_comsumer.c)
-target_link_libraries(producer_comsumer list)
+add_executable(producer_comsumer producer_comsumer_cond.c)
+target_link_libraries(producer_comsumer list utils)
 

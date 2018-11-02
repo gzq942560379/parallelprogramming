@@ -6,5 +6,5 @@ add_subdirectory(pthread)
 add_subdirectory(avx)
 add_subdirectory(template)
 
-add_executable(main main.cpp)
+add_executable(main main.c)
 

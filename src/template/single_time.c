@@ -1,8 +1,11 @@
 #include <stdlib.h>
 #include "time_utils.h"
-int main(int argc, char** argv) {
-  click_s();
-  click_e();
-  print_milli_interval();
-  exit(0);
+
+int main(int argc, char **argv) {
+    timer timer;
+    start(&timer);
+
+    end(&timer);
+    print_milli_interval(&timer);
+    exit(0);
 }

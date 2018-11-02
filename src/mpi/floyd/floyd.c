@@ -40,8 +40,8 @@ int main(int argc, char **argv) {
   matrix_init(&path_matrix, n, n);
   matrix_fill(&path_matrix, -1);
 #endif
-
-  click_s();
+  timer_t time;
+  start(&time);
   for (int k = 0; k < n; k++) {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -57,8 +57,8 @@ int main(int argc, char **argv) {
       }
     }
   }
-  click_e();
-  print_milli_interval();
+  end(&time);
+  print_milli_interval(&time);
 
   // printf("\n");
   // matrix_print(&matrix);

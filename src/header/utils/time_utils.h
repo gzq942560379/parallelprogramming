@@ -17,10 +17,10 @@
         gettimeofday(&t, NULL);                 \
         now = t.tv_sec + t.tv_usec / 1000000.0; \
     }
-
-
-struct timeval t1;
-struct timeval t2;
+typedef struct {
+    struct timeval t1;
+    struct timeval t2;
+} timer;
 
 long sec(struct timeval *tv);
 
@@ -28,21 +28,21 @@ long msec(struct timeval *tv);
 
 long usec(struct timeval *tv);
 
-void click_s();
+void start(timer *timer_p);
 
-void click_e();
+void end(timer *timer_p);
 
-long second_interval();
-long milli_interval();
-long micro_interval();
+long second_interval(timer *timer_p);
 
-void print_second_interval();
+long milli_interval(timer *timer_p);
 
-void print_milli_interval();
+long micro_interval(timer *timer_p);
 
-void print_micro_interval();
+void print_second_interval(timer *timer_p);
 
+void print_milli_interval(timer *timer_p);
 
+void print_micro_interval(timer *timer_p);
 
 
 #endif //PTHREAD_DEMO_TIME_UTILS_H
